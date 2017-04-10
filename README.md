@@ -106,6 +106,7 @@ O:25:"ProtobufBenchmarks\Person":4:{s:4:"name";s:19:"Christopher Mancini";s:2:"i
 
 # Performance
 
+```
 ProtobufBenchmarks\DecodeEvent
     Method Name      Iterations    Average Time      Ops/second
     --------------  ------------  --------------    -------------
@@ -126,3 +127,4 @@ ProtobufBenchmarks\EncodeEvent
     encodeYaml    : [1,000     ] [0.0014583096504] [685.72542]
     encodeToml    : [1,000     ] [0.0014738268852] [678.50574]
     encodePhp     : [1,000     ] [0.0000041677952] [239,935.01516]
+```

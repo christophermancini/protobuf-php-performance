@@ -1,0 +1,25 @@
+{
+    "name": "php-riak/riak-clients-performance-comparison",
+    "description": "PHP Riak Clients Performance Comparison",
+   "require": {
+        "php":                  ">=5.4.0",
+        "athletic/athletic":    "~0.1",
+        "basho/protobuf": "dev-php7-merge",
+        "symfony/yaml": "^3.2",
+        "yosymfony/toml": "^0.3.3",
+        "sabre/xml": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "ProtobufBenchmarks\\": "src/ProtobufBenchmarks/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christopher Mancini",
+            "email": "cmancini@basho.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

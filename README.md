@@ -1,16 +1,57 @@
 # Overview
 
-This project was created to compare the payload size and performance of serialization formats (Protocol Buffers, XML, JSON, YAML, TOML).
+This project was created to compare the payload size and performance of serialization formats (Protocol Buffers, XML, JSON, YAML, TOML, native PHP object serialization).
 
 # Setup
 
+I used PHP package `athletic/athletic` to execute this benchmark, simply comparing the performance of encoding / decoding a simple data structure.
+
+*NOTE:* I did not use the official Protobuf library for PHP as I could not reliably get the extension to work and the performance of the native PHP code package was far slower than any of the other technologies in this benchmark.
+
+## Platform
+
+* Mac OS X
+* protoc 3.2.0
 * PHP 7.1.1
 * basho/protobuf
 * symfony/yaml
 * yosymfony/toml
 * sabre/xml
 
+## Proto message
+
+```
+message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+  message PhoneNumber {
+    enum PhoneType {
+      HOME = 0;
+      MOBILE = 1;
+      WORK = 2;
+    }
+
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
+
+  repeated PhoneNumber phone = 4;
+}
+```
+
 # Payload
+
+Below, you can see the size and raw output of the serialized payload using each serialization method.
+
+|Technology|PayloadSize|
+|PB|712b|
+|JSON|1104b|
+|YAML|1104b|
+|TOML|1664b|
+|PHP|1864b|
+|XML|2728b|
 
 ## PB
 
@@ -106,6 +147,14 @@ O:25:"ProtobufBenchmarks\Person":4:{s:4:"name";s:19:"Christopher Mancini";s:2:"i
 
 # Performance
 
+|Technology|Encode Ops/Second|Decode Ops/Second|
+|PHP|239,935|173,060|
+|JSON|95,911|198,406|
+|PB|23,160|10,557|
+|XML|1,014|597|
+|YAML|685|339|
+|TOML|678|82|
+
 ```
 ProtobufBenchmarks\DecodeEvent
     Method Name      Iterations    Average Time      Ops/second
@@ -128,3 +177,15 @@ ProtobufBenchmarks\EncodeEvent
     encodeToml    : [1,000     ] [0.0014738268852] [678.50574]
     encodePhp     : [1,000     ] [0.0000041677952] [239,935.01516]
 ```
+
+# Conclusion
+
+Protocol Buffers payload size is by far the smallest and not surprising since this method of serialization does not include syntax defining the structure of the data. PB payload size in this benchmark was 35.5% and 73.9% smaller than the JSON and XML payloads respectively.
+
+The performance of PB with PHP is a little disappointing as it comes in the middle of the pack, with PHP serialization came out on top. Despite encoding 2184% and decoding 1668% faster than XML, JSON encoded 75.9% and decoded 94.7% faster than PB.
+
+There are a few possible reasons for underperforming JSON and PHP serialization. The first is that both methods of serialization are core to the PHP runtime, meaning they have experienced countless iterations of improvements and optimizations over the last two and half decades.
+
+The other reason is that official PB support for PHP is still alpha and the library I used for this project, `basho/protobuf`, is the offspring of a small community. Despite being a reasonably mature and stable extension, I am certain there is significant room for performance improvements.
+
+When official support for PHP improves from the protobuf team, I will update this benchmark using the official PHP extension.

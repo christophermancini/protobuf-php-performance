@@ -6,9 +6,24 @@ use ProtobufBenchmarks\Message;
 
 class Person
 {
+    /**
+     * @var string
+     */
     public $name  = "";
+
+    /**
+     * @var int
+     */
     public $id    = null;
+
+    /**
+     * @var string
+     */
     public $email = "";
+
+    /**
+     * @var []string
+     */
     public $phone = [];
 
     public function GenerateArray()

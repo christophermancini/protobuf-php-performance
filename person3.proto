@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package ProtobufBenchmarks.Message;
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+
+  message PhoneNumber {
+    enum PhoneType {
+      HOME = 0;
+      MOBILE = 1;
+      WORK = 2;
+    }
+
+    string number = 1;
+    PhoneType type = 2;
+  }
+
+  repeated PhoneNumber phone = 4;
+
+  message PidgeonPost {
+    string destination = 1;
+    string origination = 2;
+    int32 timestamp = 3;
+  }
+
+  message Semaphore {
+    string destination = 1;
+    string origination = 2;
+    int32 timestamp = 3;
+    string type = 4;
+  }
+
+  oneof contact_preference {
+    string preferred_email = 5;
+    PhoneNumber preferred_phone = 6;
+    string facsimile = 7;
+    PidgeonPost pidgeon = 8;
+    Semaphore semaphore_line = 9;
+  }
+}
+

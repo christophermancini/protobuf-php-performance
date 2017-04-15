@@ -66,7 +66,7 @@ Below, you can see the size and raw output of the serialized payload using each 
 
 | Technology | PayloadSize |
 |------------|-------------|
-| PB         | 712b        |
+| PB         | 728b        |
 | JSON       | 1104b       |
 | YAML       | 1104b       |
 | TOML       | 1664b       |

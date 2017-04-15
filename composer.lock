@@ -389,12 +389,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "192c21118ef5ea3c45e9982c81a718f629643440"
+                "reference": "e389c47ccde1cc76d3598a3d10afa6edee355690"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/192c21118ef5ea3c45e9982c81a718f629643440",
-                "reference": "192c21118ef5ea3c45e9982c81a718f629643440",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e389c47ccde1cc76d3598a3d10afa6edee355690",
+                "reference": "e389c47ccde1cc76d3598a3d10afa6edee355690",
                 "shasum": ""
             },
             "require": {
@@ -436,7 +436,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-10 06:31:22"
+            "time": "2017-04-12 20:43:31"
         },
         {
             "name": "yosymfony/toml",

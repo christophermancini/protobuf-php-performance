@@ -1,16 +1,81 @@
 # Overview
 
-This project was created to compare the payload size and performance of serialization formats (Protocol Buffers, XML, JSON, YAML, TOML).
+This project was created to compare the payload size and performance of serialization formats (Protocol Buffers, XML, JSON, YAML, TOML, native PHP object serialization).
 
 # Setup
 
+I used PHP package `athletic/athletic` to execute this benchmark, simply comparing the performance of encoding / decoding a simple data structure.
+
+*NOTE:* I did not use the official Protobuf library for PHP as I could not reliably get the extension to work and the performance of the native PHP code package was far slower than any of the other technologies in this benchmark.
+
+## Platform
+
+* Mac OS X
+* protoc 3.2.0
 * PHP 7.1.1
-* google/protobuf
+* google/protobuf [package]
 * symfony/yaml
 * yosymfony/toml
 * sabre/xml
 
+## Dependency Setup
+
+```bash
+# install protoc
+brew install protobuf
+
+# install composer deps
+composer install
+
+# generate proto messages
+protoc --php_out=src/ person.proto
+```
+
+## Execution
+
+```bash
+./vendor/bin/athletic -p src/ -b vendor/autoload.php
+```
+
+## Proto message
+
+```
+syntax = "proto3";
+
+package ProtobufBenchmarks.Message;
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    string number = 1;
+    PhoneType type = 2;
+  }
+
+  repeated PhoneNumber phone = 4;
+}
+```
+
 # Payload
+
+Below, you can see the size and raw output of the serialized payload using each serialization method.
+
+| Technology | PayloadSize |
+|------------|-------------|
+| PB         | 680b        |
+| JSON       | 1104b       |
+| YAML       | 1104b       |
+| TOML       | 1664b       |
+| PHP        | 1864b       |
+| XML        | 2728b       |
 
 ## PB
 
@@ -109,6 +174,16 @@ O:25:"ProtobufBenchmarks\Person":4:{s:4:"name";s:19:"Christopher Mancini";s:2:"i
 
 # Performance
 
+| Technology | Encode Ops/Second | Decode Ops/Second |
+| ---------- | ----------------- | ----------------- |
+| PHP        | 171,189           | 122,375           |
+| JSON       | 76,436            | 96,431            |
+| XML        | 957               | 524               |
+| YAML       | 620               | 301               |
+| PB         | 260               | 363               |
+| TOML       | 614               | 76                |
+
+```
 ProtobufBenchmarks\DecodeEvent
     Method Name      Iterations    Average Time      Ops/second
     --------------  ------------  --------------    -------------
@@ -128,3 +203,4 @@ ProtobufBenchmarks\EncodeEvent
     encodeYaml    : [1,000     ] [0.0016120166779] [620.34098]
     encodeToml    : [1,000     ] [0.0016279020309] [614.28758]
     encodePhp     : [1,000     ] [0.0000058414936] [171,189.09432]
+```

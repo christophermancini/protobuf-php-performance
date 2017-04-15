@@ -8,12 +8,11 @@ class Person
 {
     public static $is_initialized = false;
 
-    public static function initOnce()
-    {
+    public static function initOnce() {
         $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
         if (static::$is_initialized == true) {
-            return;
+          return;
         }
         $pool->internalAddGeneratedFile(hex2bin(
             "0aad020a0c706572736f6e2e70726f746f121a50726f746f62756642656e" .
@@ -32,3 +31,4 @@ class Person
         static::$is_initialized = true;
     }
 }
+

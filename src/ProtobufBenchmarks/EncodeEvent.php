@@ -48,15 +48,17 @@ class EncodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 10000
+     * @iterations 1000
      */
     public function encodeProtobuf()
     {
-        $this->data['protobuf'] = $this->personProto->serializeToString();
+        if ($this->person != null) {
+            $this->data['protobuf'] = $this->personProto->encode();
+        }
     }
 
     /**
-     * @iterations 10000
+     * @iterations 1000
      */
     public function encodeXml()
     {
@@ -73,46 +75,54 @@ class EncodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 10000
+     * @iterations 1000
      */
     public function encodeJson()
     {
-        $this->data['json'] = json_encode($this->person->GenerateArray());
+        if ($this->person != null) {
+            $this->data['json'] = json_encode($this->person->GenerateArray());
+        }
     }
 
     /**
-     * @iterations 10000
+     * @iterations 1000
      */
     public function encodeYaml()
     {
-        $this->data['yaml'] = Yaml::dump($this->person->GenerateArray());
+        if ($this->person != null) {
+            $this->data['yaml'] = Yaml::dump($this->person->GenerateArray());
+        }
     }
 
     /**
-     * @iterations 10000
+     * @iterations 1000
      */
     public function encodeToml()
     {
-        $tb = new TomlBuilder();
+        if ($this->person != null) {
+            $tb = new TomlBuilder();
 
-        $data = $tb->addValue('name', $this->person->GetName())
-            ->addValue('id', $this->person->GetId())
-            ->addValue('email', $this->person->GetEmail());
+            $data = $tb->addValue('name', $this->person->GetName())
+                ->addValue('id', $this->person->GetId())
+                ->addValue('email', $this->person->GetEmail());
 
-        foreach ($this->person->phone as $type => $number) {
-            $data->addArrayTables('phone')
-                ->addValue('type', $type)
-                ->addValue('number', $number);
+            foreach ($this->person->phone as $type => $number) {
+                $data->addArrayTables('phone')
+                    ->addValue('type', $type)
+                    ->addValue('number', $number);
+            }
+
+            $this->data['toml'] = $data->getTomlString();
         }
-
-        $this->data['toml'] = $data->getTomlString();
     }
 
     /**
-     * @iterations 10000
+     * @iterations 1000
      */
     public function encodePhp()
     {
-        $this->data['php'] = serialize($this->person);
+        if ($this->person != null) {
+            $this->data['php'] = serialize($this->person);
+        }
     }
 }

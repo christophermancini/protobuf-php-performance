@@ -4,14 +4,15 @@
    "require": {
         "php":                  ">=5.4.0",
         "athletic/athletic":    "~0.1",
-        "basho/protobuf": "dev-php7-merge",
+        "google/protobuf": "v3.2.0",
         "symfony/yaml": "^3.2",
         "yosymfony/toml": "^0.3.3",
-        "sabre/xml": "^1.5"
+        "sabre/xml": "^2.0"
     },
     "autoload": {
         "psr-4": {
-            "ProtobufBenchmarks\\": "src/ProtobufBenchmarks/"
+            "ProtobufBenchmarks\\": "src/ProtobufBenchmarks/",
+            "GPBMetadata\\": "src/GPBMetadata/"
         }
     },
     "license": "MIT",

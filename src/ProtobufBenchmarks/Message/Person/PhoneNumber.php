@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from person.proto at 2017-04-10 15:58:36
+ * Auto generated from person.proto at 2017-04-10 15:53:18
  *
  * ProtobufBenchmarks\Message package
  */
@@ -13,7 +13,7 @@ class PhoneNumber extends \ProtobufMessage
 {
     /* Field index constants */
     const NUMBER = 1;
-    const TYPE = 2;
+    const PHONE_TYPE = 2;
 
     /* @var array Field descriptors */
     protected static $fields = array(
@@ -22,9 +22,9 @@ class PhoneNumber extends \ProtobufMessage
             'required' => true,
             'type' => 7,
         ),
-        self::TYPE => array(
+        self::PHONE_TYPE => array(
             'default' => \ProtobufBenchmarks\Message\Person\PhoneNumber\PhoneType::HOME, 
-            'name' => 'type',
+            'name' => 'phone_type',
             'required' => false,
             'type' => 5,
         ),
@@ -48,7 +48,7 @@ class PhoneNumber extends \ProtobufMessage
     public function reset()
     {
         $this->values[self::NUMBER] = null;
-        $this->values[self::TYPE] = \ProtobufBenchmarks\Message\Person\PhoneNumber\PhoneType::HOME;
+        $this->values[self::PHONE_TYPE] = \ProtobufBenchmarks\Message\Person\PhoneNumber\PhoneType::HOME;
     }
 
     /**
@@ -84,25 +84,25 @@ class PhoneNumber extends \ProtobufMessage
     }
 
     /**
-     * Sets value of 'type' property
+     * Sets value of 'phone_type' property
      *
      * @param PhoneType $value Property value
      *
      * @return null
      */
-    public function setType($value)
+    public function setPhoneType($value)
     {
-        return $this->set(self::TYPE, $value);
+        return $this->set(self::PHONE_TYPE, $value);
     }
 
     /**
-     * Returns value of 'type' property
+     * Returns value of 'phone_type' property
      *
      * @return PhoneType
      */
-    public function getType()
+    public function getPhoneType()
     {
-        return $this->get(self::TYPE);
+        return $this->get(self::PHONE_TYPE);
     }
 }
 }

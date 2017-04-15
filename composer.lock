@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0defd5a4a563317d8e4d7e667c600916",
-    "content-hash": "78840314a5a6039676afdeb9ed2c36c8",
+    "hash": "808c9324f4b07477668a9421b0e27ffd",
+    "content-hash": "a1b6ad8538f2126d99d6da8113b4860b",
     "packages": [
         {
             "name": "athletic/athletic",
@@ -60,75 +60,45 @@
             "time": "2014-06-03 18:32:22"
         },
         {
-            "name": "basho/protobuf",
-            "version": "dev-php7-merge",
+            "name": "google/protobuf",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/basho/php-protobuf.git",
-                "reference": "819af89ad5170e81d55567eb70f6278307456b35"
+                "url": "https://github.com/google/protobuf.git",
+                "reference": "593e917c176b5bc5aafa57bf9f6030d749d91cd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basho/php-protobuf/zipball/819af89ad5170e81d55567eb70f6278307456b35",
-                "reference": "819af89ad5170e81d55567eb70f6278307456b35",
+                "url": "https://api.github.com/repos/google/protobuf/zipball/593e917c176b5bc5aafa57bf9f6030d749d91cd5",
+                "reference": "593e917c176b5bc5aafa57bf9f6030d749d91cd5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0"
+                "php": ">=5.5.0"
             },
             "require-dev": {
-                "google/protobuf": "v2.6.1",
-                "phpunit/phpunit": "5.7.*"
+                "phpunit/phpunit": ">=4.8.0"
             },
-            "bin": [
-                "bin/protoc-gen-php"
-            ],
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "": "stubs"
-                },
                 "psr-4": {
-                    "Basho\\Protobuf\\": "src/"
-                }
+                    "Google\\Protobuf\\Internal\\": "php/src/Google/Protobuf/Internal",
+                    "GPBMetadata\\Google\\Protobuf\\Internal\\": "php/src/GPBMetadata/Google/Protobuf/Internal"
+                },
+                "files": [
+                    "php/src/Google/Protobuf/descriptor.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache-2.0"
+                "BSD-3-Clause"
             ],
-            "authors": [
-                {
-                    "name": "Hubert Jagodziński",
-                    "email": "hubert.jagodzinski@allegro.pl",
-                    "homepage": "https://github.com/hjagodzinski",
-                    "role": "Original Author"
-                },
-                {
-                    "name": "Mateusz Gajewski",
-                    "email": "mateusz.gajewski@allegro.pl",
-                    "homepage": "https://github.com/wendigo",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "Christopher Mancini",
-                    "email": "cmancini@basho.com",
-                    "homepage": "https://github.com/christophermancini",
-                    "role": "Author"
-                }
-            ],
-            "description": "Protocol Buffer support for PHP",
-            "homepage": "https://github.com/basho/php-protobuf",
+            "description": "proto library for PHP",
+            "homepage": "https://developers.google.com/protocol-buffers/",
             "keywords": [
-                "allegro",
-                "basho",
-                "data",
-                "pb",
-                "proto",
-                "protobuf",
-                "protocol buffers",
-                "serialization"
+                "proto"
             ],
-            "time": "2017-02-09 18:15:57"
+            "time": "2017-01-27 23:03:40"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -322,16 +292,16 @@
         },
         {
             "name": "sabre/xml",
-            "version": "1.5.x-dev",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruux/sabre-xml.git",
-                "reference": "59b20e5bbace9912607481634f97d05a776ffca7"
+                "reference": "054292959a1f2b64c10c9c7a03a816ba1872b8a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruux/sabre-xml/zipball/59b20e5bbace9912607481634f97d05a776ffca7",
-                "reference": "59b20e5bbace9912607481634f97d05a776ffca7",
+                "url": "https://api.github.com/repos/fruux/sabre-xml/zipball/054292959a1f2b64c10c9c7a03a816ba1872b8a3",
+                "reference": "054292959a1f2b64c10c9c7a03a816ba1872b8a3",
                 "shasum": ""
             },
             "require": {
@@ -339,7 +309,7 @@
                 "ext-xmlreader": "*",
                 "ext-xmlwriter": "*",
                 "lib-libxml": ">=2.6.20",
-                "php": ">=5.5.5",
+                "php": ">=7.0",
                 "sabre/uri": ">=1.0,<3.0.0"
             },
             "require-dev": {
@@ -381,7 +351,7 @@
                 "dom",
                 "xml"
             ],
-            "time": "2016-10-09 22:57:52"
+            "time": "2016-11-16 00:41:01"
         },
         {
             "name": "symfony/yaml",
@@ -389,12 +359,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "192c21118ef5ea3c45e9982c81a718f629643440"
+                "reference": "e389c47ccde1cc76d3598a3d10afa6edee355690"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/192c21118ef5ea3c45e9982c81a718f629643440",
-                "reference": "192c21118ef5ea3c45e9982c81a718f629643440",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e389c47ccde1cc76d3598a3d10afa6edee355690",
+                "reference": "e389c47ccde1cc76d3598a3d10afa6edee355690",
                 "shasum": ""
             },
             "require": {
@@ -436,7 +406,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-10 06:31:22"
+            "time": "2017-04-12 20:43:31"
         },
         {
             "name": "yosymfony/toml",
@@ -530,9 +500,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "basho/protobuf": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

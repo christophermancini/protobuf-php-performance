@@ -3,27 +3,14 @@
 namespace ProtobufBenchmarks;
 
 use ProtobufBenchmarks\Message;
+use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\Internal\GPBType;
 
 class Person
 {
-    /**
-     * @var string
-     */
     public $name  = "";
-
-    /**
-     * @var int
-     */
     public $id    = null;
-
-    /**
-     * @var string
-     */
     public $email = "";
-
-    /**
-     * @var []string
-     */
     public $phone = [];
 
     public function GenerateArray()
@@ -43,20 +30,22 @@ class Person
         $message->setId($this->id);
         $message->setEmail($this->email);
 
-        $message->clearPhone();
+        $phones = new RepeatedField(GPBType::MESSAGE, Message\Person_PhoneNumber::class);
         foreach ($this->phone as $key => $value) {
-            $phone = new Message\Person\PhoneNumber();
+            $phone = new Message\Person_PhoneNumber();
             $phone->setNumber($value);
             switch ($key) {
                 case 'home':
-                    $phone->setType(Message\Person\PhoneNumber\PhoneType::HOME);
+                    $phone->setType(Message\Person_PhoneType::HOME);
                 case 'work':
-                    $phone->setType(Message\Person\PhoneNumber\PhoneType::WORK);
+                    $phone->setType(Message\Person_PhoneType::WORK);
                 default:
-                    $phone->setType(Message\Person\PhoneNumber\PhoneType::MOBILE);
+                    $phone->setType(Message\Person_PhoneType::MOBILE);
             }
-            $message->appendPhone($phone);
+            $phones[] = $phone;
         }
+
+        $message->setPhone($phones);
 
         return $message;
     }

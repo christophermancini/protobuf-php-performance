@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from person.proto at 2017-04-10 15:58:36
+ * Auto generated from person.proto at 2017-04-10 15:53:18
  *
  * ProtobufBenchmarks\Message package
  */

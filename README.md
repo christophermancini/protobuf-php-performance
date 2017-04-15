@@ -18,6 +18,25 @@ I used PHP package `athletic/athletic` to execute this benchmark, simply compari
 * yosymfony/toml
 * sabre/xml
 
+## Dependency Setup
+
+```bash
+# install protoc
+brew install protobuf
+
+# install composer deps
+composer install
+
+# generate proto messages
+./vendor/bin/protoc-gen-php --package='ProtobufBenchmarks\Message' --use-namespaces --psr --destination='src/' person.proto
+```
+
+## Execution
+
+```bash
+./vendor/bin/athletic -p src/ -b vendor/autoload.php
+```
+
 ## Proto message
 
 ```
@@ -45,13 +64,14 @@ message Person {
 
 Below, you can see the size and raw output of the serialized payload using each serialization method.
 
-|Technology|PayloadSize|
-|PB|712b|
-|JSON|1104b|
-|YAML|1104b|
-|TOML|1664b|
-|PHP|1864b|
-|XML|2728b|
+| Technology | PayloadSize |
+|------------|-------------|
+| PB         | 712b        |
+| JSON       | 1104b       |
+| YAML       | 1104b       |
+| TOML       | 1664b       |
+| PHP        | 1864b       |
+| XML        | 2728b       |
 
 ## PB
 
@@ -147,13 +167,14 @@ O:25:"ProtobufBenchmarks\Person":4:{s:4:"name";s:19:"Christopher Mancini";s:2:"i
 
 # Performance
 
-|Technology|Encode Ops/Second|Decode Ops/Second|
-|PHP|239,935|173,060|
-|JSON|95,911|198,406|
-|PB|23,160|10,557|
-|XML|1,014|597|
-|YAML|685|339|
-|TOML|678|82|
+| Technology | Encode Ops/Second | Decode Ops/Second |
+| ---------- | ----------------- | ----------------- |
+| PHP        | 239,935           | 173,060           |
+| JSON       | 95,911            | 198,406           |
+| PB         | 23,160            | 10,557            |
+| XML        | 1,014             | 597               |
+| YAML       | 685               | 339               |
+| TOML       | 678               | 82                |
 
 ```
 ProtobufBenchmarks\DecodeEvent

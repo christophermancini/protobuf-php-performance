@@ -37,7 +37,7 @@ class DecodeEvent extends AthleticEvent
             ->AddPhone("work", "2345678901");
 
         $this->personProto = $this->person->GenerateProto();
-        $this->data['protobuf'] = $this->personProto->encode();
+        $this->data['protobuf'] = $this->personProto->serializeToString();
 
         $service = new Service();
         $phones = [];
@@ -72,16 +72,16 @@ class DecodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function decodeProtobuf()
     {
         $data = new Message\Person();
-        $data->decode($this->data['protobuf']);
+        $data->mergeFromString($this->data['protobuf']);
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function decodeXml()
     {
@@ -90,7 +90,7 @@ class DecodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function decodeJson()
     {
@@ -98,7 +98,7 @@ class DecodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function decodeYaml()
     {
@@ -106,7 +106,7 @@ class DecodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function decodeToml()
     {
@@ -114,7 +114,7 @@ class DecodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function decodePhp()
     {

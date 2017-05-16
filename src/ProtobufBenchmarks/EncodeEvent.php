@@ -48,17 +48,17 @@ class EncodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function encodeProtobuf()
     {
         if ($this->person != null) {
-            $this->data['protobuf'] = $this->personProto->encode();
+            $this->data['protobuf'] = $this->personProto->serializeToString();
         }
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function encodeXml()
     {
@@ -75,7 +75,7 @@ class EncodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function encodeJson()
     {
@@ -85,7 +85,7 @@ class EncodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function encodeYaml()
     {
@@ -95,7 +95,7 @@ class EncodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function encodeToml()
     {
@@ -117,7 +117,7 @@ class EncodeEvent extends AthleticEvent
     }
 
     /**
-     * @iterations 1000
+     * @iterations 10000
      */
     public function encodePhp()
     {

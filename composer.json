@@ -4,7 +4,6 @@
    "require": {
         "php":                  ">=5.4.0",
         "athletic/athletic":    "~0.1",
-        "google/protobuf": "v3.2.0",
         "symfony/yaml": "^3.2",
         "yosymfony/toml": "^0.3.3",
         "sabre/xml": "^2.0"
